@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Login } from './Login';
 import { Register } from './Register';
 import { UserList } from './UserList';
+import { ProtectedRoute } from './ProtectedRoute';
 
 
 
@@ -45,7 +46,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/users"  element={<UserList/>}/> 
+        <Route path="/users"  element={
+          <ProtectedRoute>
+          <UserList/>
+          </ProtectedRoute>
+          }/> 
        
       </Routes>
    </>

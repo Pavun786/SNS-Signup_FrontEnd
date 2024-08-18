@@ -2,7 +2,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
- function ProtectedRoute({children}) {
+ export function ProtectedRoute({children}) {
 
    const isAuth = localStorage.getItem("token")
     
@@ -12,5 +12,3 @@ import { Navigate } from 'react-router-dom';
     </>
   )
 }
-
-export default ProtectedRoute;
