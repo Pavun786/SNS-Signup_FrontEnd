@@ -1,25 +1,56 @@
-import logo from './logo.svg';
 import './App.css';
+import {Routes,Route,Link, Navigate,useParams, useNavigate} from "react-router-dom"
+import { useState} from "react";
+import Button from '@mui/material/Button';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { Login } from './Login';
+import { Register } from './Register';
+import { UserList } from './UserList';
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  
+  
+  const navigate=useNavigate()
+  
+   const token = localStorage.getItem("token")
+   const userName = localStorage.getItem("Name")
 
+   const LoggingOut=()=>{
+  
+     localStorage.clear()
+     navigate("/")
+  }
+
+  return (
+     
+      <>
+         <AppBar position="static">
+        <Toolbar className='toolbar'>
+          
+           <h3>{userName}</h3>
+         
+           {
+             token ?  <Button onClick={()=>LoggingOut()}color="inherit">
+             Logout
+            </Button> : "Login"
+           } 
+           
+        </Toolbar>
+      </AppBar> 
+       
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/users"  element={<UserList/>}/> 
+       
+      </Routes>
+   </>
+     
+  )
+        }
+    
 export default App;
